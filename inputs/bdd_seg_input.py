@@ -40,66 +40,6 @@ logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
                     stream=sys.stdout)
 
 
-def maybe_download_and_extract(hypes):
-    """ Downloads, extracts and prepairs data.
-
-    """
-
-    data_dir = hypes['dirs']['data_dir']
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
-
-    data_road_zip = os.path.join(data_dir, 'data_road.zip')
-    vgg_weights = os.path.join(data_dir, 'vgg16.npy')
-    kitti_road_dir = os.path.join(data_dir, 'data_road/')
-
-    if os.path.exists(vgg_weights) and os.path.exists(kitti_road_dir):
-        return
-
-    import tensorvision.utils as utils
-    import zipfile
-    from shutil import copy2
-
-    # Download KITTI DATA
-    kitti_data_url = hypes['data']['kitti_url']
-
-    if kitti_data_url == '':
-        logging.error("Data URL for Kitti Data not provided.")
-        url = "http://www.cvlibs.net/download.php?file=data_road.zip"
-        logging.error("Please visit: {}".format(url))
-        logging.error("and request Kitti Download link.")
-        logging.error("Enter URL in hypes/kittiSeg.json")
-        exit(1)
-    if not kitti_data_url[-19:] == 'kitti/data_road.zip':
-        logging.error("Wrong url.")
-        url = "http://www.cvlibs.net/download.php?file=data_road.zip"
-        logging.error("Please visit: {}".format(url))
-        logging.error("and request Kitti Download link.")
-        logging.error("Enter URL in hypes/kittiSeg.json")
-        exit(1)
-
-    logging.info("Downloading Kitti Road Data.")
-    utils.download(kitti_data_url, data_dir)
-    # Extract and prepare KITTI DATA
-    logging.info("Extracting kitti_road data.")
-    zipfile.ZipFile(data_road_zip, 'r').extractall(data_dir)
-    kitti_road_dir = os.path.join(data_dir, 'data_road/')
-
-    logging.info("Preparing kitti_road data.")
-
-    train_txt = "data/train3.txt"
-    val_txt = "data/val3.txt"
-    copy2(train_txt, kitti_road_dir)
-    copy2(val_txt, kitti_road_dir)
-
-    vgg_url = kitti_data_url = hypes['data']['vgg_url']
-    # Download VGG DATA
-    download_command = "wget {} -P {}".format(vgg_url, data_dir)
-    logging.info("Downloading VGG weights.")
-    utils.download(vgg_url, data_dir)
-    return
-
-
 def _load_gt_file(hypes, data_file=None):
     """Take the data_file and hypes and create a generator.
 
@@ -108,15 +48,17 @@ def _load_gt_file(hypes, data_file=None):
     base_path = os.path.realpath(os.path.dirname(data_file))
     files = [line.rstrip() for line in open(data_file)]
 
-    for epoche in itertools.count():
+    for epoch in itertools.count():
         shuffle(files)
         for file in files:
-            print(base_path)
+            
             image_file, gt_image_file = file.split(" ")
-            image_file = os.path.join(base_path, image_file)
+            #image_file = os.path.join(base_path, image_file)
+            print("Base path:", base_path)
+            print("File: ", image_file)
             assert os.path.exists(image_file), \
                 "File does not exist: %s" % image_file
-            gt_image_file = os.path.join(base_path, gt_image_file)
+            #gt_image_file = os.path.join(base_path, gt_image_file)
             assert os.path.exists(gt_image_file), \
                 "File does not exist: %s" % gt_image_file
             image = scipy.misc.imread(image_file, mode='RGB')
