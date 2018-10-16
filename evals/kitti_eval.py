@@ -17,12 +17,12 @@ import time
 
 import tensorvision
 import tensorvision.utils as utils
-
+import logging
 
 def eval_image(hypes, gt_image, cnn_image):
     """."""
+    logging.info("Evaluating image with gt") 
     thresh = np.array(range(0, 256))/255.0
-
     road_color = np.array(hypes['data']['road_color'])
     background_color = np.array(hypes['data']['background_color'])
     gt_road = np.all(gt_image == road_color, axis=2)
@@ -47,7 +47,6 @@ def resize_label_image(image, gt_image, image_height, image_width):
 
 
 def evaluate(hypes, sess, image_pl, inf_out):
-
     softmax = inf_out['softmax']
     data_dir = hypes['dirs']['data_dir']
 
@@ -69,9 +68,9 @@ def evaluate(hypes, sess, image_pl, inf_out):
             for i, datum in enumerate(file):
                     datum = datum.rstrip()
                     image_file, gt_file = datum.split(" ")
-                    image_file = os.path.join(image_dir, image_file)
-                    gt_file = os.path.join(image_dir, gt_file)
-
+                    #image_file = os.path.join(image_dir, image_file)
+                    #gt_file = os.path.join(image_dir, gt_file)
+                    logging.info("Evaluating image file {} and gt-file {}".format(image_file, gt_file))
                     image = scp.misc.imread(image_file, mode='RGB')
                     gt_image = scp.misc.imread(gt_file, mode='RGB')
 
