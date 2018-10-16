@@ -18,6 +18,7 @@ import time
 import tensorvision
 import tensorvision.utils as utils
 
+import logging
 
 def eval_image(hypes, gt_image, cnn_image):
     """."""
@@ -37,6 +38,7 @@ def eval_image(hypes, gt_image, cnn_image):
 
 
 def resize_label_image(image, gt_image, image_height, image_width):
+    logging.info("KittiSeg: Reshaping label image")
     image = scp.misc.imresize(image, size=(image_height, image_width),
                               interp='cubic')
     shape = gt_image.shape
@@ -47,7 +49,7 @@ def resize_label_image(image, gt_image, image_height, image_width):
 
 
 def evaluate(hypes, sess, image_pl, inf_out):
-
+    logging.info("KittiSeg: Evaluating bdd")
     softmax = inf_out['softmax']
     data_dir = hypes['dirs']['data_dir']
 
