@@ -10,7 +10,7 @@ run*.sh
 demo*.sh
 .nfs*
 
-DATA/*
+ALL_DATA/*
 RUNS/*
 output/*
 
