@@ -20,6 +20,7 @@ import numpy as np
 import matplotlib.cm as cm
 import os
 # import cv2
+import logging
 
 def make_overlay(image, gt_prob):
 
@@ -127,7 +128,7 @@ def pxEval_maximizeFMeasure(totalPosNum, totalNegNum, totalFN, totalFP, thresh =
     precision = precision[~selector_invalid]
         
     maxValidIndex = len(precision)
-    
+    logging.info("Calculating average precision (VOC) - (Precision: {}".format(precision))
     #Pascal VOC average precision
     AvgPrec = 0
     counter = 0

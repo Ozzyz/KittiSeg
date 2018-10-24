@@ -14,7 +14,7 @@ from seg_utils import seg_utils as seg
 
 import tensorflow as tf
 import time
-
+import pylab
 import tensorvision
 import tensorvision.utils as utils
 
@@ -23,7 +23,6 @@ import logging
 def eval_image(hypes, gt_image, cnn_image):
     """."""
     thresh = np.array(range(0, 256))/255.0
-
     road_color = np.array(hypes['data']['road_color'])
     background_color = np.array(hypes['data']['background_color'])
     gt_road = np.all(gt_image == road_color, axis=2)
@@ -104,10 +103,10 @@ def evaluate(hypes, sess, image_pl, inf_out):
                     shape = input_image.shape
 
                     feed_dict = {image_pl: input_image}
-
+                    logging.info("KittiSeg: Sending input image to feed dict")
                     output = sess.run([softmax], feed_dict=feed_dict)
                     output_im = output[0][:, 1].reshape(shape[0], shape[1])
-
+                    logging.info("Got output image: {}".format(output_im))
                     if hypes['jitter']['fix_shape']:
                         gt_shape = gt_image.shape
                         output_im = output_im[offset_x:offset_x+gt_shape[0],
