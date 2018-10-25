@@ -106,7 +106,6 @@ def evaluate(hypes, sess, image_pl, inf_out):
                     logging.info("KittiSeg: Sending input image to feed dict")
                     output = sess.run([softmax], feed_dict=feed_dict)
                     output_im = output[0][:, 1].reshape(shape[0], shape[1])
-                    logging.info("Got output image: {}".format(output_im))
                     if hypes['jitter']['fix_shape']:
                         gt_shape = gt_image.shape
                         output_im = output_im[offset_x:offset_x+gt_shape[0],
