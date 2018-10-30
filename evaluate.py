@@ -109,6 +109,7 @@ def main(_):
     # logging.info("Output images will be saved to {}".format)
     ana.do_analyze(logdir)
 
+    """
     logging.info("Creating output on test data.")
     kitti_test.do_inference(logdir)
 
@@ -116,6 +117,7 @@ def main(_):
     logging.info("For evaluating your own models I recommend using:"
                  "`tv-analyze --logdir /path/to/run`.")
     logging.info("tv-analysis has a much cleaner interface.")
+    """
 
 
 if __name__ == '__main__':
