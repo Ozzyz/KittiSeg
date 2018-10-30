@@ -56,9 +56,9 @@ If you like to understand the code, I would recommend looking at [demo.py](demo.
 
 ### Manage Data Storage
 
-KittiSeg allows to separate data storage from code. This is very useful in many server environments. By default, the data is stored in the folder `KittiSeg/DATASET` and the output of runs in `KittiSeg/RUNS`. This behaviour can be changed by setting the bash environment variables: `$TV_DIR_ALL_DATA` and `$TV_DIR_RUNS`.
+KittiSeg allows to separate data storage from code. This is very useful in many server environments. By default, the data is stored in the folder `KittiSeg/DATA` and the output of runs in `KittiSeg/RUNS`. This behaviour can be changed by setting the bash environment variables: `$TV_DIR_ALL_DATA` and `$TV_DIR_RUNS`.
 
-Include  `export TV_DIR_ALL_DATA="/MY/LARGE/HDD/DATASET"` in your `.profile` and the all data will be downloaded to `/MY/LARGE/HDD/DATASET/data_road`. Include `export TV_DIR_RUNS="/MY/LARGE/HDD/RUNS"` in your `.profile` and all runs will be saved to `/MY/LARGE/HDD/RUNS/KittiSeg`
+Include  `export TV_DIR_ALL_DATA="/MY/LARGE/HDD/DATA"` in your `.profile` and the all data will be downloaded to `/MY/LARGE/HDD/DATA/data_road`. Include `export TV_DIR_RUNS="/MY/LARGE/HDD/RUNS"` in your `.profile` and all runs will be saved to `/MY/LARGE/HDD/RUNS/KittiSeg`
 
 ### RUNDIR and Experiment Organization
 

@@ -60,7 +60,7 @@ def maybe_download_and_extract(hypes):
     import zipfile
     from shutil import copy2
 
-    # Download KITTI DATASET
+    # Download KITTI DATA
     kitti_data_url = hypes['data']['kitti_url']
 
     if kitti_data_url == '':
@@ -80,7 +80,7 @@ def maybe_download_and_extract(hypes):
 
     logging.info("Downloading Kitti Road Data.")
     utils.download(kitti_data_url, data_dir)
-    # Extract and prepare KITTI DATASET
+    # Extract and prepare KITTI DATA
     logging.info("Extracting kitti_road data.")
     zipfile.ZipFile(data_road_zip, 'r').extractall(data_dir)
     kitti_road_dir = os.path.join(data_dir, 'data_road/')
@@ -93,7 +93,7 @@ def maybe_download_and_extract(hypes):
     copy2(val_txt, kitti_road_dir)
 
     vgg_url = kitti_data_url = hypes['data']['vgg_url']
-    # Download VGG DATASET
+    # Download VGG DATA
     download_command = "wget {} -P {}".format(vgg_url, data_dir)
     logging.info("Downloading VGG weights.")
     utils.download(vgg_url, data_dir)
@@ -495,7 +495,7 @@ def main():
     q = {}
     q['train'] = create_queues(hypes, 'train')
     q['val'] = create_queues(hypes, 'val')
-    data_dir = "../DATASET"
+    data_dir = "../DATA"
 
     _make_data_gen(hypes, 'train', data_dir)
 

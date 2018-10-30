@@ -101,14 +101,13 @@ def main(_):
 
     utils._add_paths_to_sys(hypes)
 
-    train.maybe_download_and_extract(hypes)
+    #train.maybe_download_and_extract(hypes)
 
-    maybe_download_and_extract(runs_dir)
+    #maybe_download_and_extract(runs_dir)
     logging.info("Evaluating on Validation data.")
     logdir = os.path.join(runs_dir, FLAGS.RUN)
     # logging.info("Output images will be saved to {}".format)
     ana.do_analyze(logdir)
-
     logging.info("Creating output on test data.")
     kitti_test.do_inference(logdir)
 
