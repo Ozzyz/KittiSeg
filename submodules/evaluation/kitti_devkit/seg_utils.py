@@ -58,7 +58,6 @@ def evalExp(gtBin, cur_prob, thres, validMap = None, validArea=None):
     :param thres:
     :param validMap:
     '''
-
     assert len(cur_prob.shape) == 2, 'Wrong size of input prob map'
     assert len(gtBin.shape) == 2, 'Wrong size of input prob map'
     thresInf = np.concatenate(([-np.Inf], thres, [np.Inf]))

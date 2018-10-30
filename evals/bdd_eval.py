@@ -103,7 +103,7 @@ def evaluate(hypes, sess, image_pl, inf_out):
                     shape = input_image.shape
 
                     feed_dict = {image_pl: input_image}
-                    logging.info("KittiSeg: Sending input image to feed dict")
+                    logging.info("KittiSeg: Sending input image to feed dict (phase: {})".format(phase))
                     output = sess.run([softmax], feed_dict=feed_dict)
                     output_im = output[0][:, 1].reshape(shape[0], shape[1])
                     if hypes['jitter']['fix_shape']:
@@ -116,16 +116,16 @@ def evaluate(hypes, sess, image_pl, inf_out):
                         ov_image = seg.make_overlay(image, output_im)
                         name = os.path.basename(image_file)
                         image_list.append((name, ov_image))
-
                         name2 = name.split('.')[0] + '_green.png'
-
+                        
+                        logging.info("KittiSeg (val-phase): evaluating name/name2 {} and {}".format(name, name2))
                         hard = output_im > 0.5
                         green_image = utils.fast_overlay(image, hard)
                         image_list.append((name2, green_image))
 
                     FN, FP, posNum, negNum = eval_image(hypes,
                                                         gt_image, output_im)
-
+                    logging.info("FN: {}, FP: {}, posNum: {}, negNum: {}".format(FN, FP, posNum, negNum))
                     total_fp += FP
                     total_fn += FN
                     total_posnum += posNum
@@ -135,6 +135,7 @@ def evaluate(hypes, sess, image_pl, inf_out):
             total_posnum, total_negnum, total_fn, total_fp, thresh=thresh)
 
         if phase == 'val':
+            logging.info("KittiSeg: Entering val phase")
             start_time = time.time()
             for i in xrange(10):
                 sess.run([softmax], feed_dict=feed_dict)

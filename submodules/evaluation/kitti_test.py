@@ -41,7 +41,7 @@ else:
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
-test_file = 'data_road/testing.txt'
+test_file = 'cropped_test_mini.txt'
 
 
 def create_test_output(hypes, sess, image_pl, softmax):
@@ -88,7 +88,7 @@ def create_test_output(hypes, sess, image_pl, softmax):
                 green_image = utils.fast_overlay(image, hard)
 
                 name = os.path.basename(image_file)
-                new_name = name.split('_')[0] + "_road_" + name.split('_')[1]
+                new_name = name.replace(".jpg", "_test.jpg") #name.split('_')[0] + "_road_" + name.split('_')[1]
 
                 save_file = os.path.join(logdir, new_name)
                 logging.info("Writing file: %s", save_file)
