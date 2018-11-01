@@ -125,7 +125,7 @@ def evaluate(hypes, sess, image_pl, inf_out):
 
                     FN, FP, posNum, negNum = eval_image(hypes,
                                                         gt_image, output_im)
-                    logging.info("FN: {}, FP: {}, posNum: {}, negNum: {}".format(FN, FP, posNum, negNum))
+                    #logging.info("FN: {}, FP: {}, posNum: {}, negNum: {}".format(FN, FP, posNum, negNum))
                     total_fp += FP
                     total_fn += FN
                     total_posnum += posNum
