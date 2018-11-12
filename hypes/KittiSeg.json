@@ -9,8 +9,8 @@
   "path": ["../incl"],
 
   "data": {
-    "train_file" : "val_test_seg.txt",
-    "val_file" : "val_test_seg.txt",
+    "train_file" : "img_seg_train_small.txt",
+    "val_file" : "img_seg_val_small.txt",
     "road_color" : [254,0,254],
     "background_color" : [0,0,0],
     "vgg_url": "ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy",
@@ -47,11 +47,11 @@
   },
 
   "logging": {
-    "display_iter": 20,
-    "eval_iter": 10,
-    "write_iter": 10,
-    "save_iter": 20,
-    "image_iter": 10
+    "display_iter": 200,
+    "eval_iter": 200,
+    "write_iter": 200,
+    "save_iter": 200,
+    "image_iter": 200
   },
 
   "solver": {
