@@ -70,8 +70,8 @@ def evaluate(hypes, sess, image_pl, inf_out):
             for i, datum in enumerate(file):
                     datum = datum.rstrip()
                     image_file, gt_file = datum.split(" ")
-                    #image_file = os.path.join(image_dir, image_file)
-                    #gt_file = os.path.join(image_dir, gt_file)
+                    image_file = os.path.join(image_dir, image_file)
+                    gt_file = os.path.join(image_dir, gt_file)
 
                     image = scp.misc.imread(image_file, mode='RGB')
                     gt_image = scp.misc.imread(gt_file, mode='RGB')

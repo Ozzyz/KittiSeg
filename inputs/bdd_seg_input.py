@@ -53,10 +53,10 @@ def _load_gt_file(hypes, data_file=None):
         for file in files:
             
             image_file, gt_image_file = file.split(" ")
-            #image_file = os.path.join(base_path, image_file)
+            image_file = os.path.join(base_path, image_file)
             assert os.path.exists(image_file), \
                 "File does not exist: %s" % image_file
-            #gt_image_file = os.path.join(base_path, gt_image_file)
+            gt_image_file = os.path.join(base_path, gt_image_file)
             assert os.path.exists(gt_image_file), \
                 "File does not exist: %s" % gt_image_file
             image = scipy.misc.imread(image_file, mode='RGB')
