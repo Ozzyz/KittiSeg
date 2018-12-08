@@ -9,8 +9,8 @@
   "path": ["../incl"],
 
   "data": {
-    "train_file" : "img_seg_train_small.txt",
-    "val_file" : "img_seg_val_small.txt",
+    "train_file" : "img_seg_train.txt",
+    "val_file" : "img_seg_val.txt",
     "road_color" : [254,0,254],
     "background_color" : [0,0,0],
     "vgg_url": "ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy",
@@ -39,7 +39,7 @@
     "patch_width": 256,
     "crop_chance": 0.8,
     "fix_shape": false,
-    "reseize_image": false,
+    "reseize_image": true,
     "image_height" : 384,
     "image_width" : 1248,
 
