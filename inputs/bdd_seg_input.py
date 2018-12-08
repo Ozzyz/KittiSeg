@@ -52,7 +52,7 @@ def _load_gt_file(hypes, data_file=None):
         shuffle(files)
 
         if hypes['data']['truncate_data']:
-            subset = files[:hypes['truncate_count']]
+            subset = files[:hypes['data']['truncate_count']]
         
         for file in subset:
             
