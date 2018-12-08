@@ -50,7 +50,11 @@ def _load_gt_file(hypes, data_file=None):
 
     for epoch in itertools.count():
         shuffle(files)
-        for file in files:
+
+        if hypes['data']['truncate_data']:
+            subset = files[:hypes['truncate_count']]
+        
+        for file in subset:
             
             image_file, gt_image_file = file.split(" ")
             image_file = os.path.join(base_path, image_file)

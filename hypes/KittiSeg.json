@@ -14,7 +14,9 @@
     "road_color" : [254,0,254],
     "background_color" : [0,0,0],
     "vgg_url": "ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy",
-    "kitti_url": ""
+    "kitti_url": "",
+    "truncate_data": true,
+    "truncate_count": 1000
   },
  
   "arch": {
