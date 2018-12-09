@@ -53,7 +53,8 @@ def _load_gt_file(hypes, data_file=None):
 
         if hypes['data']['truncate_data']:
             subset = files[:hypes['data']['truncate_count']]
-        
+        else:
+            subset = files
         for file in subset:
             
             image_file, gt_image_file = file.split(" ")
